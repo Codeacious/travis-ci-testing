@@ -135,11 +135,18 @@ class HelloRequest : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* release_name();
   void set_allocated_name(::std::string* name);
 
+  // int32 id = 2;
+  void clear_id();
+  static const int kIdFieldNumber = 2;
+  ::google::protobuf::int32 id() const;
+  void set_id(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:helloworld.HelloRequest)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr name_;
+  ::google::protobuf::int32 id_;
   mutable int _cached_size_;
   friend struct protobuf_helloworld_2eproto::TableStruct;
 };
@@ -290,6 +297,20 @@ inline void HelloRequest::set_allocated_name(::std::string* name) {
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
   // @@protoc_insertion_point(field_set_allocated:helloworld.HelloRequest.name)
+}
+
+// int32 id = 2;
+inline void HelloRequest::clear_id() {
+  id_ = 0;
+}
+inline ::google::protobuf::int32 HelloRequest::id() const {
+  // @@protoc_insertion_point(field_get:helloworld.HelloRequest.id)
+  return id_;
+}
+inline void HelloRequest::set_id(::google::protobuf::int32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:helloworld.HelloRequest.id)
 }
 
 // -------------------------------------------------------------------

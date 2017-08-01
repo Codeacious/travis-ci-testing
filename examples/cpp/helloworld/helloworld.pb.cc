@@ -54,6 +54,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HelloRequest, name_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HelloRequest, id_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HelloReply, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -64,7 +65,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 0, -1, sizeof(HelloRequest)},
-  { 6, -1, sizeof(HelloReply)},
+  { 7, -1, sizeof(HelloReply)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -117,17 +118,17 @@ void InitDefaults() {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
-      "\n\020helloworld.proto\022\nhelloworld\"\034\n\014HelloR"
-      "equest\022\014\n\004name\030\001 \001(\t\"\035\n\nHelloReply\022\017\n\007me"
-      "ssage\030\001 \001(\t2\216\001\n\007Greeter\022>\n\010SayHello\022\030.he"
-      "lloworld.HelloRequest\032\026.helloworld.Hello"
-      "Reply\"\000\022C\n\rSayHelloAgain\022\030.helloworld.He"
-      "lloRequest\032\026.helloworld.HelloReply\"\000B6\n\033"
-      "io.grpc.examples.helloworldB\017HelloWorldP"
-      "rotoP\001\242\002\003HLWb\006proto3"
+      "\n\020helloworld.proto\022\nhelloworld\"(\n\014HelloR"
+      "equest\022\014\n\004name\030\001 \001(\t\022\n\n\002id\030\002 \001(\005\"\035\n\nHell"
+      "oReply\022\017\n\007message\030\001 \001(\t2\216\001\n\007Greeter\022>\n\010S"
+      "ayHello\022\030.helloworld.HelloRequest\032\026.hell"
+      "oworld.HelloReply\"\000\022C\n\rSayHelloAgain\022\030.h"
+      "elloworld.HelloRequest\032\026.helloworld.Hell"
+      "oReply\"\000B6\n\033io.grpc.examples.helloworldB"
+      "\017HelloWorldProtoP\001\242\002\003HLWb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 300);
+      descriptor, 312);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "helloworld.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -151,6 +152,7 @@ struct StaticDescriptorInitializer {
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int HelloRequest::kNameFieldNumber;
+const int HelloRequest::kIdFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 HelloRequest::HelloRequest()
@@ -170,11 +172,13 @@ HelloRequest::HelloRequest(const HelloRequest& from)
   if (from.name().size() > 0) {
     name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
+  id_ = from.id_;
   // @@protoc_insertion_point(copy_constructor:helloworld.HelloRequest)
 }
 
 void HelloRequest::SharedCtor() {
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  id_ = 0;
   _cached_size_ = 0;
 }
 
@@ -213,6 +217,7 @@ HelloRequest* HelloRequest::New(::google::protobuf::Arena* arena) const {
 void HelloRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:helloworld.HelloRequest)
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  id_ = 0;
 }
 
 bool HelloRequest::MergePartialFromCodedStream(
@@ -235,6 +240,20 @@ bool HelloRequest::MergePartialFromCodedStream(
             this->name().data(), this->name().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "helloworld.HelloRequest.name"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 id = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &id_)));
         } else {
           goto handle_unusual;
         }
@@ -278,6 +297,11 @@ void HelloRequest::SerializeWithCachedSizes(
       1, this->name(), output);
   }
 
+  // int32 id = 2;
+  if (this->id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->id(), output);
+  }
+
   // @@protoc_insertion_point(serialize_end:helloworld.HelloRequest)
 }
 
@@ -298,6 +322,11 @@ void HelloRequest::SerializeWithCachedSizes(
         1, this->name(), target);
   }
 
+  // int32 id = 2;
+  if (this->id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->id(), target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:helloworld.HelloRequest)
   return target;
 }
@@ -311,6 +340,13 @@ size_t HelloRequest::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->name());
+  }
+
+  // int32 id = 2;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->id());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -346,6 +382,9 @@ void HelloRequest::MergeFrom(const HelloRequest& from) {
 
     name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
   }
+  if (from.id() != 0) {
+    set_id(from.id());
+  }
 }
 
 void HelloRequest::CopyFrom(const ::google::protobuf::Message& from) {
@@ -372,6 +411,7 @@ void HelloRequest::Swap(HelloRequest* other) {
 }
 void HelloRequest::InternalSwap(HelloRequest* other) {
   name_.Swap(&other->name_);
+  std::swap(id_, other->id_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
@@ -434,6 +474,20 @@ void HelloRequest::set_allocated_name(::std::string* name) {
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
   // @@protoc_insertion_point(field_set_allocated:helloworld.HelloRequest.name)
+}
+
+// int32 id = 2;
+void HelloRequest::clear_id() {
+  id_ = 0;
+}
+::google::protobuf::int32 HelloRequest::id() const {
+  // @@protoc_insertion_point(field_get:helloworld.HelloRequest.id)
+  return id_;
+}
+void HelloRequest::set_id(::google::protobuf::int32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:helloworld.HelloRequest.id)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
