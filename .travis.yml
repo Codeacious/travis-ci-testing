@@ -7,3 +7,4 @@ python:
 sudo: true
 dist: trusty
 install: pip install grpcio
+script: ./run_grpc_py.sh
