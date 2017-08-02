@@ -56,7 +56,8 @@ class GreeterServiceImpl final : public Greeter::Service {
   Status SayHello(ServerContext* context, const HelloRequest* request,
                   HelloReply* reply) override {
     std::string prefix("Hello ");
-    reply->set_message(prefix + request->name());
+    std::string middle(" , id=");
+    reply->set_message(prefix + request->name() + middle + std::to_string(request->id()));
     return Status::OK;
   }
 };
