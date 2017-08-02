@@ -3,7 +3,7 @@ set -evx
 # trap 'kill $(jobs -p)' EXIT
 
 pushd $TRAVIS_BUILD_DIR/examples/cpp/helloworld
-make
+make clean && make
 ./greeter_server &
 sleep 1
 ./greeter_client

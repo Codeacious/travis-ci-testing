@@ -1,4 +1,5 @@
 language: cpp
+cache: ccache
 branches:
   only:
     - "master"
@@ -12,5 +13,8 @@ before-install:
   - sudo apt-get install -y build-essential autoconf libtool
   - sudo apt-get install -y libgflags-dev libgtest-dev
   - sudo apt-get install -y clang libc++-dev
-install: ./install_grpc.sh
+  - sudo apt-get install -y ccache
+install:
+    - ./link_ccache.sh
+    - ./install_grpc.sh
 script: ./run_grpc_cpp.sh

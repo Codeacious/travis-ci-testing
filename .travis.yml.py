@@ -1,9 +1,8 @@
 language: python
+cache: pip
 branches:
   only:
     - "master"
-git:
-  submodules: false
 notifications:
   email: false
 python:
