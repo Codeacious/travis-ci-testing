@@ -8,17 +8,25 @@ set -ex
 # pushd protobuf
 # ./autogen.sh
 # ./configure --prefix=/usr
-# make && make check && sudo make install && sudo ldconfig
+# make && sudo make install && sudo ldconfig
 # popd
 
 # popd
 
-# Install grpc (this should install protobuf)
+# Install grpc
 pushd $TRAVIS_BUILD_DIR/..
 git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
 
 pushd grpc
 git submodule update --init
+
+# install protobuf
+pushd third_party/protobuf
+./autogen.sh
+./configure --prefix=/usr
+make && sudo make install && sudo ldconfig
+popd
+
 make && sudo make install
 popd
 
